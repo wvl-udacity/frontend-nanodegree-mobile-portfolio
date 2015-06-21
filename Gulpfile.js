@@ -10,7 +10,7 @@ var image_resize = require('gulp-image-resize');
 var rename = require('gulp-rename');
 
 gulp.task('html', function() {
-  return gulp.src('{.,views}/**/*.html')
+  return gulp.src(['views/**/*.html', '*.html'])
     .pipe(minify_html())
     .pipe(gulp.dest('build'));
 });
@@ -29,12 +29,13 @@ gulp.task('js', function() {
 
 gulp.task('images', function() {
   return gulp.src('{img,views}/**/*.jpg')
+    .pipe(image_resize({width: 100, quality: 0.5}))
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('pizzeria_image', function() {
   return gulp.src('views/images/pizzeria.jpg')
-    .pipe(image_resize({width: 100}))
+    .pipe(image_resize({width: 100, quality: 0.5}))
     .pipe(rename(function(path) {
       path.basename += "_100";
     }))
