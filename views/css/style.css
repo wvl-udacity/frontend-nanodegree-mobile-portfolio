@@ -33,6 +33,8 @@ form {
   position: fixed;
   width: 256px;
   z-index: -1;
+  /* Put movers into their own composite layer. */
+  will-change: transform;
 }
 
 .randomPizzaContainer {
