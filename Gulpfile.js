@@ -12,36 +12,38 @@ var rename = require('gulp-rename');
 var imagemin = require('imagemin-jpegtran');
 
 gulp.task('html', function() {
-  return gulp.src(['views/**/*.html', '*.html'])
+  return gulp.src(['views/**/*.html', '*.html'], {base: '.'})
     .pipe(minify_html())
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('css', function() {
-  return gulp.src('{css,views}/**/*.css')
+  return gulp.src('{css,views}/**/*.css', {base: '.'})
     .pipe(minify_html())
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('js', function() {
-  return gulp.src('{js,views}/**/*.js')
+  return gulp.src('{js,views}/**/*.js', {base: '.'})
     .pipe(uglify().on('error', gutil.log))
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('jpg', function() {
-  return gulp.src('{img/**/*.jpg,views/**/!(pizzeria).jpg')
+  return gulp.src(['img/**/*.jpg', 'views/**/!(pizzeria).jpg'], {base: '.'})
     .pipe(imagemin()().on('error', console.error.bind(console)))
+    .pipe(debug())
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('png', function() {
-  return gulp.src('{img/**/*.png,views/**/*.png}')
+  return gulp.src('{img/**/*.png,views/**/*.png}', {base: '.'})
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('pizzeria_image', function() {
   return gulp.src('views/images/pizzeria.jpg')
+    .pipe(gulp.dest('build/views/images'))
     .pipe(image_resize({width: 100, quality: 0.5}))
     .pipe(rename(function(path) {
       path.basename += "_100";

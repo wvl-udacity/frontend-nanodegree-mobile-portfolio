@@ -2,12 +2,7 @@
 
 ### Setting up the website
 
-To run a non-minified version of the website, you can open the `index.html` file in your favorite browser:
-```
-open index.html
-```
-
-To create a minified version of the website, you need to set up the **Gulp** build system.
+To build the website, you need to set up the **Gulp** build system.
 Running the default Gulp task will create a minified version of the website in the `build/` directory.
 ```
 npm install
@@ -15,7 +10,7 @@ node_modules/.bin/gulp
 open build/index.html
 ```
 
-The minified version can be pushed to Github Pages using a Gulp task.
+The built version can be pushed to Github Pages using a Gulp task.
 ```
 node_modules/.bin/gulp gh_pages
 ```

@@ -441,8 +441,8 @@ var resizePizzas = function(size) {
       }
     }
 
-    var newsize = sizeSwitcher(size);
-    return newsize * windowwidth;
+    var newsize = sizeSwitcher(size) * windowwidth;
+    return newsize;
   }
 
   // Iterates through pizza elements on the page and changes their widths
@@ -451,7 +451,7 @@ var resizePizzas = function(size) {
     // Compute the new widths outside of the loop to not force a layout.
     var newwidth = determineWidth(size);
     for (var i = 0; i < pizzaContainers.length; i++) {
-      pizzaContainers[i].style.width = newwidth;
+      pizzaContainers[i].style.width = newwidth + 'px';
     }
   }
 
