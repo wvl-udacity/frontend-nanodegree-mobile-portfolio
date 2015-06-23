@@ -447,7 +447,7 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    var pizzaContainers = document.querySelectorAll(".randomPizzaContainer");
+    var pizzaContainers = document.getElementsByClassName("randomPizzaContainer");
     // Compute the new widths outside of the loop to not force a layout.
     var newwidth = determineWidth(size);
     for (var i = 0; i < pizzaContainers.length; i++) {
@@ -467,8 +467,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -500,7 +500,7 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('mover');
   // Call the scrollTop property outside the loop so we don't force a layout.
   var scrollTop = document.body.scrollTop;
   for (var i = 0; i < items.length; i++) {
@@ -525,7 +525,8 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var rows = Math.floor(window.innerHeight / s);
+  for (var i = 0; i < rows * cols; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
